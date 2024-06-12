@@ -2,7 +2,6 @@ import Data.Epic;
 import Data.SubTask;
 import Status.Status;
 import TaskManager.TaskManager;
-import Data.Task;
 
 public class Main {
 
@@ -15,7 +14,6 @@ public class Main {
         System.out.println("Добавили эпик");
         System.out.println(epic1);
 
-
         SubTask subtask1 = new SubTask("Subtask1 создания ",
                 "Написать что то ", 1);
         taskManager.addSubTask(subtask1);
@@ -27,11 +25,11 @@ public class Main {
         System.out.println("Добавили второй сабтаск");
         System.out.println(subtask2);
 
-
         subtask1.setTaskStatus(Status.IN_PROGRESS);
         taskManager.updateSubTask(subtask1);
         System.out.println("Поменяли статус первого сабтаска на В ПРОЦЕССЕ");
         System.out.println(subtask1);
+        System.out.println(subtask2);
 
         System.out.println("Проверяем статус эпика после изменения статуса его сабтаска");
         System.out.println(epic1);
@@ -40,6 +38,7 @@ public class Main {
         subtask2.setTaskStatus(Status.DONE);
         taskManager.updateSubTask(subtask2);
         System.out.println("Поменяли статус второго сабтаска на ВЫПОЛНЕН");
+        System.out.println(subtask1);
         System.out.println(subtask2);
 
         System.out.println("Проверяем статус эпика после изменения статуса второго сабтаска");
@@ -50,11 +49,10 @@ public class Main {
         taskManager.updateSubTask(subtask1);
         System.out.println("Выставили статус ВЫПОЛНЕН первому сабтаску" + subtask1.getTaskStatus());
         System.out.println(subtask1);
+        System.out.println(subtask2);
 
         System.out.println("Проверяем статус первого эпика после выполнения всех его сабтасков" + epic1.getTaskStatus());
         System.out.println(epic1);
 
     }
-
 }
-

@@ -2,6 +2,8 @@ package Data;
 
 import Status.Status;
 
+import java.util.Objects;
+
 public class Task {
     private int taskId;
     private String taskName;
@@ -44,6 +46,18 @@ public class Task {
 
     public void setTaskStatus(Status taskStatus) {
         this.taskStatus = taskStatus;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Task task)) return false;
+        return taskId == task.taskId && taskStatus == task.taskStatus;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(taskId, taskStatus);
     }
 
     @Override
