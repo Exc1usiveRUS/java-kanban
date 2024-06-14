@@ -14,6 +14,7 @@ public class Main {
         System.out.println("Добавили эпик");
         System.out.println(epic1);
 
+
         SubTask subtask1 = new SubTask("Subtask1 создания ",
                 "Написать что то ", 1);
         taskManager.addSubTask(subtask1);
@@ -53,6 +54,14 @@ public class Main {
 
         System.out.println("Проверяем статус первого эпика после выполнения всех его сабтасков" + epic1.getTaskStatus());
         System.out.println(epic1);
+        System.out.println("проверяем обновление эпика");
+        taskManager.updateEpic(epic1, "новое название", "новое описание");
+        System.out.println(epic1);
+
+        System.out.println("Проверяем очистились ли сабтаски");
+        System.out.println(taskManager.showAllSubTasks());
+        System.out.println(subtask1);
+        System.out.println(subtask2);
 
     }
 }
