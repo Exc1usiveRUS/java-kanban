@@ -1,12 +1,12 @@
 import Data.Epic;
 import Data.SubTask;
 import Status.Status;
-import TaskManager.TaskManager;
+import TaskManager.InMemoryTaskManager;
 
 public class Main {
 
     public static void main(String[] args) {
-        TaskManager taskManager = new TaskManager();
+        InMemoryTaskManager taskManager = new InMemoryTaskManager();
 
 
         Epic epic1 = new Epic("Эпик 1", "Нужно сделать");
@@ -58,5 +58,8 @@ public class Main {
 
         System.out.println("Проверяем очистились ли сабтаски");
         System.out.println(taskManager.showAllSubTasks());
+
+        System.out.println("ищем сабстаск по ID " + taskManager.findSubTaskById(subtask1.getTaskId()));
+
     }
 }
