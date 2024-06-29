@@ -4,13 +4,14 @@ import Data.Epic;
 import Data.SubTask;
 import TaskManager.InMemoryTaskManager;
 import TaskManager.TaskManager;
+import TaskManager.InMemoryHistoryManager;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SubTaskTest {
 
-    TaskManager taskManager = new InMemoryTaskManager();
+    TaskManager taskManager = new InMemoryTaskManager(new InMemoryHistoryManager());
 
     @Test
     public void subTasksEqualsIfIdEquals() {

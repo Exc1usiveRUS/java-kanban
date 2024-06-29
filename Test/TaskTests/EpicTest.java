@@ -3,13 +3,14 @@ package TaskTests;
 import Data.Epic;
 import TaskManager.InMemoryTaskManager;
 import TaskManager.TaskManager;
+import TaskManager.InMemoryHistoryManager;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 class EpicTest {
 
-    TaskManager taskManager = new InMemoryTaskManager();
+    TaskManager taskManager = new InMemoryTaskManager(new InMemoryHistoryManager());
 
     @Test
     public void epicsEqualsIfIdEquals() {

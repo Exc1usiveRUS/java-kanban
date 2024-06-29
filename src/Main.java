@@ -1,12 +1,13 @@
 import Data.Epic;
 import Data.SubTask;
 import Status.Status;
+import TaskManager.InMemoryHistoryManager;
 import TaskManager.InMemoryTaskManager;
 
 public class Main {
 
     public static void main(String[] args) {
-        InMemoryTaskManager taskManager = new InMemoryTaskManager();
+        InMemoryTaskManager taskManager = new InMemoryTaskManager(new InMemoryHistoryManager());
 
 
         Epic epic1 = new Epic("Эпик 1", "Нужно сделать");

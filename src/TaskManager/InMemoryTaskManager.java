@@ -9,11 +9,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class InMemoryTaskManager implements TaskManager {
-    InMemoryHistoryManager history = new InMemoryHistoryManager();
+    InMemoryHistoryManager history;
     private int nextId = 1;
     HashMap<Integer, SubTask> subTasks = new HashMap<>();
     HashMap<Integer, Epic> epics = new HashMap<>();
     HashMap<Integer, Task> tasks = new HashMap<>();
+
+    public InMemoryTaskManager(InMemoryHistoryManager history) {
+        this.history = history;
+    }
 
     @Override
     public int generateId() {

@@ -1,5 +1,6 @@
 package ManagerTests;
 
+import TaskManager.InMemoryHistoryManager;
 import TaskManager.InMemoryTaskManager;
 import Data.Epic;
 import Data.SubTask;
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 class InMemoryTaskManagerTest {
 
@@ -22,7 +24,7 @@ class InMemoryTaskManagerTest {
 
     @BeforeEach
     void beforeEach() {
-        taskManager = new InMemoryTaskManager();
+        taskManager = new InMemoryTaskManager(new InMemoryHistoryManager());
         epic = new Epic("Описание эпика", "Имя эпика");
         subTask = new SubTask("Описание сабтаска", "Имя сабтаска", epic.getTaskId());
         task = new Task("Описание таска", "Имя таска");
