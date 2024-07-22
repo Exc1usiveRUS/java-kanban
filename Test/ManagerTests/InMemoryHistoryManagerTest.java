@@ -1,44 +1,74 @@
 package ManagerTests;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import Data.Task;
+import Data.Epic;
+import Data.SubTask;
 import TaskManager.InMemoryHistoryManager;
 
 import org.junit.jupiter.api.BeforeAll;
+
 import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
 
 class InMemoryHistoryManagerTest {
 
     InMemoryHistoryManager history = new InMemoryHistoryManager();
     static Task task;
-    static ArrayList<Task> historyList;
+    static Epic epic;
+    static SubTask subTask;
 
     @BeforeAll
     static void beforeAll() {
         task = new Task("Описание", "Имя");
-        historyList = new ArrayList<>();
+        epic = new Epic("Описание эпика", "Имя эпика");
+        subTask = new SubTask("Описание саба", "Имя саба", 3);
+
+        task.setTaskId(1);
+        epic.setTaskId(2);
+        subTask.setTaskId(3);
     }
 
     @Test
     void add() {
 
         history.add(task);
-        historyList = history.getHistory();
 
-        assertNotNull(historyList);
-        assertEquals(1, historyList.size());
-
+        assertNotNull(history.getHistory());
+        assertEquals(history.getHistory().getFirst(), task);
     }
 
     @Test
-    void shouldReturn10TasksWhenAddMore() {
+    void removeFirstTaskFromHistory() {
+        history.add(task);
+        history.add(epic);
+        history.add(subTask);
 
-        for (int i = 0; i < 15; i++) {
-            history.add(task);
-        }
-        historyList = history.getHistory();
-        assertEquals(10, historyList.size());
+        history.remove(task.getTaskId());
+
+        assertEquals(history.getHistory(), List.of(epic, subTask));
+    }
+
+    @Test
+    void removeLastFromTaskHistory() {
+        history.add(task);
+        history.add(epic);
+        history.add(subTask);
+
+        history.remove(subTask.getTaskId());
+
+        assertEquals(history.getHistory(), List.of(task, epic));
+    }
+
+    @Test
+    void checkForUniquenessInList() {
+        history.add(task);
+        history.add(epic);
+        history.add(subTask);
+        history.add(task);
+
+        assertNotEquals(task, history.getHistory().getFirst());
     }
 }
