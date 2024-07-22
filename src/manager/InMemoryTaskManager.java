@@ -117,14 +117,14 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     public List<SubTask> findAllSubtaskByEpicId(int id) {
-        ArrayList<SubTask> NewSubtasks = new ArrayList<>();
+        ArrayList<SubTask> newSubtasks = new ArrayList<>();
         Epic epic = epics.get(id);
         if (epic != null) {
             for (Integer subtaskId : epic.getSubTaskIds()) {
-                NewSubtasks.add(subTasks.get(subtaskId));
+                newSubtasks.add(subTasks.get(subtaskId));
             }
         }
-        return NewSubtasks;
+        return newSubtasks;
     }
 
     public SubTask findSubTaskById(int id) {
