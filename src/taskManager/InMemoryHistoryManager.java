@@ -1,6 +1,6 @@
-package TaskManager;
+package taskManager;
 
-import Data.Task;
+import data.Task;
 
 import java.util.List;
 import java.util.ArrayList;

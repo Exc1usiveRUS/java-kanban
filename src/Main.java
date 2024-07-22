@@ -1,8 +1,8 @@
-import Data.Epic;
-import Data.SubTask;
-import Status.Status;
-import TaskManager.InMemoryHistoryManager;
-import TaskManager.InMemoryTaskManager;
+import data.Epic;
+import data.SubTask;
+import status.Status;
+import taskManager.InMemoryHistoryManager;
+import taskManager.InMemoryTaskManager;
 
 public class Main {
 
@@ -61,6 +61,8 @@ public class Main {
         System.out.println(taskManager.showAllSubTasks());
 
         System.out.println("ищем сабстаск по ID " + taskManager.findSubTaskById(subtask1.getTaskId()));
+
+
 
     }
 }

@@ -1,10 +1,10 @@
-package TaskTests;
+package taskTests;
 
-import Data.Epic;
-import Data.SubTask;
-import TaskManager.InMemoryTaskManager;
-import TaskManager.TaskManager;
-import TaskManager.InMemoryHistoryManager;
+import data.Epic;
+import data.SubTask;
+import taskManager.InMemoryTaskManager;
+import taskManager.TaskManager;
+import taskManager.InMemoryHistoryManager;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

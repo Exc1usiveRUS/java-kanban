@@ -1,9 +1,9 @@
-package TaskManager;
+package taskManager;
 
-import Data.Epic;
-import Data.SubTask;
-import Data.Task;
-import Status.Status;
+import data.Epic;
+import data.SubTask;
+import data.Task;
+import status.Status;
 
 import java.util.Map;
 import java.util.List;

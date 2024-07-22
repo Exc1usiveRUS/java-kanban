@@ -1,11 +1,11 @@
-package ManagerTests;
+package managerTests;
 
 import java.util.List;
 
-import Data.Task;
-import Data.Epic;
-import Data.SubTask;
-import TaskManager.InMemoryHistoryManager;
+import data.Task;
+import data.Epic;
+import data.SubTask;
+import taskManager.InMemoryHistoryManager;
 
 import org.junit.jupiter.api.BeforeAll;
 
