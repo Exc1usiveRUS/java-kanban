@@ -1,8 +1,8 @@
 import data.Epic;
 import data.SubTask;
 import status.Status;
-import taskManager.InMemoryHistoryManager;
-import taskManager.InMemoryTaskManager;
+import manager.InMemoryHistoryManager;
+import manager.InMemoryTaskManager;
 
 public class Main {
 

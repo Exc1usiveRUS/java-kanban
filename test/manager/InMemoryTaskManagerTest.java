@@ -1,7 +1,5 @@
-package managerTests;
+package manager;
 
-import taskManager.InMemoryHistoryManager;
-import taskManager.InMemoryTaskManager;
 import data.Epic;
 import data.SubTask;
 import data.Task;

@@ -1,4 +1,4 @@
-package taskManager;
+package manager;
 
 import data.Epic;
 import data.SubTask;
