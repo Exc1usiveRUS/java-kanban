@@ -63,26 +63,25 @@ public class InMemoryHistoryManager implements HistoryManager {
             if (node == null) {
                 return;
             }
-                innerMap.remove(node.task.getTaskId());
-                Node prev = node.prev;
-                Node next = node.next;
+            Node prev = node.prev;
+            Node next = node.next;
 
-                if (prev != null) {
-                    prev.next = next;
-                }
-                if (next != null) {
-                    next.prev = prev;
-                }
+            if (prev != null) {
+                prev.next = next;
+            }
+            if (next != null) {
+                next.prev = prev;
+            }
 
-                node.prev = null;
-                node.next = null;
+            node.prev = null;
+            node.next = null;
 
-                if (node == head) {
-                    head = next;
-                }
-                if (node == tail) {
-                    tail = prev;
-                }
+            if (node == head) {
+                head = next;
+            }
+            if (node == tail) {
+                tail = prev;
+            }
 
         }
 
