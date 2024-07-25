@@ -1,9 +1,6 @@
-package ManagerTests;
+package manager;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import TaskManager.Managers;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 

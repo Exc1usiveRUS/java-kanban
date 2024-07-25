@@ -1,19 +1,13 @@
-package ManagerTests;
+package manager;
 
-import TaskManager.InMemoryHistoryManager;
-import TaskManager.InMemoryTaskManager;
-import Data.Epic;
-import Data.SubTask;
-import Data.Task;
-import TaskManager.TaskManager;
+import data.Epic;
+import data.SubTask;
+import data.Task;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 class InMemoryTaskManagerTest {
 

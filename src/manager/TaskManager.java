@@ -1,8 +1,8 @@
-package TaskManager;
+package manager;
 
-import Data.Epic;
-import Data.SubTask;
-import Data.Task;
+import data.Epic;
+import data.SubTask;
+import data.Task;
 
 public interface TaskManager {
     int generateId();
