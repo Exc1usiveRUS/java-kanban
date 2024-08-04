@@ -71,11 +71,11 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
 
     }
 
-    private static String taskToString (Task task) {
-      return task.getTaskId() + "," + task.getType() +
-              "," + task.getTaskName() + "," +
-              task.getTaskStatus() + "," +
-              task.getTaskDescription() + getEpicId(task);
+    private static String taskToString(Task task) {
+        return task.getTaskId() + "," + task.getType() +
+                "," + task.getTaskName() + "," +
+                task.getTaskStatus() + "," +
+                task.getTaskDescription() + getEpicId(task);
 
     }
 
