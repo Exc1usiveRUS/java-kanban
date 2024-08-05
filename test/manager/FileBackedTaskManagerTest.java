@@ -22,14 +22,14 @@ class FileBackedTaskManagerTest {
     @BeforeEach
     void beforeEach() throws IOException {
         file = File.createTempFile("test", ".csv");
-        task = new Task("testTask", "testTaskDescription");
-        epic = new Epic("testEpic", "testEpicDescription");
-        subTask = new SubTask("testSub", "testSubDescription", epic.getTaskId());
+        task = new Task("testTask", "testTaskDescription", Status.IN_PROGRESS);
+        epic = new Epic("testEpic", "testEpicDescription", Status.IN_PROGRESS);
+        subTask = new SubTask("testSub", "testSubDescription", Status.IN_PROGRESS, 2);
     }
 
     @Test
     void testLoadFromFile() {
-        FileBackedTaskManager fileBackedTaskManager = new FileBackedTaskManager(new InMemoryHistoryManager(), file);
+        FileBackedTaskManager fileBackedTaskManager = new FileBackedTaskManager(file);
 
         fileBackedTaskManager.addTask(task);
         fileBackedTaskManager.addEpic(epic);
@@ -42,7 +42,7 @@ class FileBackedTaskManagerTest {
 
 
 
-        FileBackedTaskManager fileManager = FileBackedTaskManager.loadFromFile(new InMemoryHistoryManager(), file);
+        FileBackedTaskManager fileManager = FileBackedTaskManager.loadFromFile(file);
 
         assertEquals(fileBackedTaskManager.showAllTasks(), fileManager.showAllTasks());
         assertEquals(fileBackedTaskManager.showAllEpics(), fileManager.showAllEpics());

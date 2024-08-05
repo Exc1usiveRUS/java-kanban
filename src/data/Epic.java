@@ -13,8 +13,14 @@ public class Epic extends Task {
         subTaskIds = new ArrayList<>();
     }
 
+    public Epic(String taskName, String taskDescription, Status taskStatus) {
+        super(taskName, taskDescription, taskStatus);
+        subTaskIds = new ArrayList<>();
+    }
+
     public Epic(int taskId, String taskName, Status taskStatus, String taskDescription) {
         super(taskId, taskName, taskStatus, taskDescription);
+        subTaskIds = new ArrayList<>();
     }
 
     public void setSubTaskIds(int id) {
@@ -36,5 +42,6 @@ public class Epic extends Task {
      public TaskType getType() {
         return TaskType.EPIC;
      }
+
 }
 
