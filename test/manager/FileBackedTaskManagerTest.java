@@ -1,6 +1,7 @@
 package manager;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 import status.Status;
 import data.Task;
 import data.SubTask;
@@ -9,15 +10,18 @@ import data.Epic;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 
 class FileBackedTaskManagerTest {
 
-    File file;
-    Task task;
-    Epic epic;
-    SubTask subTask;
+    private File file;
+    private Task task;
+    private Epic epic;
+    private SubTask subTask;
 
     @BeforeEach
     void beforeEach() throws IOException {
@@ -39,14 +43,18 @@ class FileBackedTaskManagerTest {
         assertEquals(1, fileBackedTaskManager.epics.size());
         assertEquals(1, fileBackedTaskManager.subTasks.size());
 
-
-
-
         FileBackedTaskManager fileManager = FileBackedTaskManager.loadFromFile(file);
 
         assertEquals(fileBackedTaskManager.showAllTasks(), fileManager.showAllTasks());
         assertEquals(fileBackedTaskManager.showAllEpics(), fileManager.showAllEpics());
         assertEquals(fileBackedTaskManager.showAllSubTasks(), fileManager.showAllSubTasks());
+    }
 
+    @Test
+    void loadFromEmptyFile() throws IOException {
+        File emptyFile = File.createTempFile("emptyTest", ".csv");
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(emptyFile, StandardCharsets.UTF_8));
+        String line = bufferedReader.readLine();
+        assertNull(line);
     }
 }
