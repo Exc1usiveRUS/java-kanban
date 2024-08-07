@@ -53,8 +53,7 @@ class FileBackedTaskManagerTest {
     @Test
     void loadFromEmptyFile() throws IOException {
         File emptyFile = File.createTempFile("emptyTest", ".csv");
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(emptyFile, StandardCharsets.UTF_8));
-        String line = bufferedReader.readLine();
-        assertNull(line);
+        FileBackedTaskManager loadFile = new FileBackedTaskManager(emptyFile);
+        assertNotNull(loadFile); //попробовал создать объект класса на основе пустого файла и, соответственно, сравнить с null
     }
 }
