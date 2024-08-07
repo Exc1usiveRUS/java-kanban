@@ -10,11 +10,8 @@ import data.Epic;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.File;
-import java.nio.charset.StandardCharsets;
 
 class FileBackedTaskManagerTest {
 
@@ -55,5 +52,8 @@ class FileBackedTaskManagerTest {
         File emptyFile = File.createTempFile("emptyTest", ".csv");
         FileBackedTaskManager loadFile = new FileBackedTaskManager(emptyFile);
         assertNotNull(loadFile); //попробовал создать объект класса на основе пустого файла и, соответственно, сравнить с null
+        assertEquals(0, loadFile.epics.size());
+        assertEquals(0, loadFile.subTasks.size());
+        assertEquals(0, loadFile.tasks.size());
     }
 }
