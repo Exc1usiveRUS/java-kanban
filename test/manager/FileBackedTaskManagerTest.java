@@ -50,7 +50,7 @@ class FileBackedTaskManagerTest {
     @Test
     void loadFromEmptyFile() throws IOException {
         File emptyFile = File.createTempFile("emptyTest", ".csv");
-        FileBackedTaskManager loadFile = new FileBackedTaskManager(emptyFile);
+        FileBackedTaskManager loadFile = FileBackedTaskManager.loadFromFile(emptyFile);
         assertNotNull(loadFile); //попробовал создать объект класса на основе пустого файла и, соответственно, сравнить с null
         assertEquals(0, loadFile.epics.size());
         assertEquals(0, loadFile.subTasks.size());
