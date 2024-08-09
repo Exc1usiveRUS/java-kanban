@@ -11,14 +11,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class InMemoryTaskManager implements TaskManager {
-    InMemoryHistoryManager history;
-    private int nextId = 1;
+    static InMemoryHistoryManager history;
+    protected int nextId = 1;
     Map<Integer, SubTask> subTasks = new HashMap<>();
     Map<Integer, Epic> epics = new HashMap<>();
     Map<Integer, Task> tasks = new HashMap<>();
 
     public InMemoryTaskManager(InMemoryHistoryManager history) {
-        this.history = history;
+        InMemoryTaskManager.history = history;
+    }
+
+    public InMemoryTaskManager() {
+        history = new InMemoryHistoryManager();
     }
 
     @Override
