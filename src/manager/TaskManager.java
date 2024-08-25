@@ -4,6 +4,8 @@ import data.Epic;
 import data.SubTask;
 import data.Task;
 
+import java.util.List;
+
 public interface TaskManager {
     int generateId();
 
@@ -21,6 +23,18 @@ public interface TaskManager {
 
     void updateTask(Task task);
 
+    SubTask findSubTaskById(int id);
+
+    Task findTaskById(int id);
+
+    Epic findEpicById(int id);
+
+    List<Task> showAllTasks();
+
+    List<SubTask> showAllSubTasks();
+
+    List<Epic> showAllEpics();
+
     void removeSubTaskById(Integer id);
 
     void removeEpicById(int id);
@@ -32,5 +46,9 @@ public interface TaskManager {
     void clearEpics();
 
     void clearSubTasks();
+
+    List<Task> getPrioritizedTasks();
+
+    List<Task> getHistory();
 
 }
