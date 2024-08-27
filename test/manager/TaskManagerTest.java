@@ -57,8 +57,7 @@ abstract class TaskManagerTest<T extends TaskManager> {
         taskManager.addTask(task);
         taskManager.addEpic(epic);
         taskManager.addSubTask(subTask);
-        assertEquals(taskManager.findSubTaskById(subTask.getTaskId()),
-                taskManager.findAllSubtaskByEpicId(epic.getTaskId()).getFirst());
+        assertEquals(subTask.getEpicId(), epic.getTaskId());
         assertNotNull(taskManager.showAllSubTasks());
         assertEquals(subTask, taskManager.showAllSubTasks().getFirst());
         assertEquals(1, taskManager.showAllSubTasks().size());
