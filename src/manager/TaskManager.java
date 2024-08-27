@@ -29,6 +29,8 @@ public interface TaskManager {
 
     Epic findEpicById(int id);
 
+    List<SubTask> findAllSubtaskByEpicId(int id);
+
     List<Task> showAllTasks();
 
     List<SubTask> showAllSubTasks();
