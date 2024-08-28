@@ -12,28 +12,31 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.File;
+import java.time.Duration;
+import java.time.LocalDateTime;
 
-class FileBackedTaskManagerTest {
+class FileBackedTaskManagerTest extends TaskManagerTest<FileBackedTaskManager> {
 
-    private File file;
-    private Task task;
-    private Epic epic;
-    private SubTask subTask;
+    File file;
 
-    @BeforeEach
-    void beforeEach() throws IOException {
+    FileBackedTaskManagerTest() throws IOException {
         file = File.createTempFile("test", ".csv");
-        task = new Task("testTask", "testTaskDescription", Status.IN_PROGRESS);
-        epic = new Epic("testEpic", "testEpicDescription", Status.IN_PROGRESS);
-        subTask = new SubTask("testSub", "testSubDescription", Status.IN_PROGRESS, 2);
+        taskManager = new FileBackedTaskManager(file);
     }
+
 
     @Test
     void testLoadFromFile() {
         FileBackedTaskManager fileBackedTaskManager = new FileBackedTaskManager(file);
 
+        task.setStartTime(LocalDateTime.now());
+        task.setDuration(Duration.ofMinutes(20));
         fileBackedTaskManager.addTask(task);
+
         fileBackedTaskManager.addEpic(epic);
+
+        subTask.setStartTime(LocalDateTime.now().plusMinutes(30));
+        subTask.setDuration(Duration.ofMinutes(20));
         fileBackedTaskManager.addSubTask(subTask);
 
         assertEquals(1, fileBackedTaskManager.tasks.size());
