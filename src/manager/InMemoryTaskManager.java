@@ -108,9 +108,9 @@ public class InMemoryTaskManager implements TaskManager {
     public void addSubTask(SubTask subTask) {
         int newId = generateId();
         subTask.setTaskId(newId);
-        Epic epic = epics.get(subTask.getEpicId());
         validatePrioritized(subTask);
         addPrioritized(subTask);
+        Epic epic = epics.get(subTask.getEpicId());
         if (epic != null) {
             epic.setSubTaskIds(newId);
             subTasks.put(subTask.getTaskId(), subTask);
@@ -163,6 +163,8 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public void updateSubTask(SubTask subTask) {
+        validatePrioritized(subTask);
+        addPrioritized(subTask);
         if ((subTask == null) || (!subTasks.containsKey(subTask.getTaskId()))) {
             return;
         }
@@ -173,8 +175,6 @@ public class InMemoryTaskManager implements TaskManager {
         subTasks.replace(subTask.getTaskId(), subTask);
         updateEpicStatus(epic);
         updateEpicTime(epic);
-        validatePrioritized(epic);
-        addPrioritized(subTask);
     }
 
     @Override
@@ -188,10 +188,10 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public void updateTask(Task task) {
+        validatePrioritized(task);
+        addPrioritized(task);
         if (tasks.containsKey(task.getTaskId())) {
             tasks.put(task.getTaskId(), task);
-            validatePrioritized(task);
-            addPrioritized(task);
         }
     }
 
