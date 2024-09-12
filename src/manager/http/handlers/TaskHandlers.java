@@ -14,16 +14,12 @@ public class TaskHandlers extends BaseHttpHandler {
     }
 
     @Override
-    public void handle(HttpExchange exchange) throws IOException {
+    public void safeHandle(HttpExchange exchange) throws IOException {
         Endpoint endpoint = getEndpoint(exchange);
         String[] split = exchange.getRequestURI().getPath().split("/");
-
-        try {
             switch (endpoint) {
-                case GET ->
-                    sendText(exchange, gson.toJson(taskManager.showAllTasks()));
-                case GET_BY_ID ->
-                    sendText(exchange, gson.toJson(taskManager.findTaskById(Integer.parseInt(split[2]))));
+                case GET -> sendText(exchange, gson.toJson(taskManager.showAllTasks()));
+                case GET_BY_ID -> sendText(exchange, gson.toJson(taskManager.findTaskById(Integer.parseInt(split[2]))));
                 case POST -> {
                     task = gson.fromJson(getTaskFromRequestBody(exchange), Task.class);
                     taskManager.addTask(task);
@@ -39,15 +35,7 @@ public class TaskHandlers extends BaseHttpHandler {
                     taskManager.removeTaskById(task.getTaskId());
                     writeResponse(exchange, 204, "");
                 }
-                case UNKNOWN ->
-                    sendNotFound(exchange);
+                case UNKNOWN -> sendNotFound(exchange);
             }
-        } catch (NullPointerException e) {
-            sendNotFound(exchange);
-        } catch (ManagerSaveException e) {
-            sendHasInteractions(exchange);
-        } catch (Exception e) {
-            writeResponse(exchange, 500, "");
-        }
     }
 }

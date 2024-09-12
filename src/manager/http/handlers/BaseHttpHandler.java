@@ -3,6 +3,7 @@ package manager.http.handlers;
 import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import exceptions.ManagerSaveException;
 import manager.TaskManager;
 import data.Task;
 import data.Epic;
@@ -32,6 +33,21 @@ public abstract class BaseHttpHandler implements HttpHandler {
         this.taskManager = taskManager;
         this.gson = gson;
     }
+
+    @Override
+    public void handle(HttpExchange exchange) throws IOException {
+        try {
+            safeHandle(exchange);
+        } catch (NullPointerException e) {
+            sendNotFound(exchange);
+        } catch (ManagerSaveException e) {
+            sendHasInteractions(exchange);
+        } catch (Exception e) {
+            writeResponse(exchange, 500, "");
+        }
+    }
+
+    public abstract void safeHandle(HttpExchange exchange) throws IOException;
 
     protected Endpoint getEndpoint(HttpExchange exchange) {
         String[] path = exchange.getRequestURI().getPath().split("/");

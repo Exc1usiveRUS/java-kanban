@@ -12,7 +12,7 @@ public class PrioritizedHandler extends BaseHttpHandler {
     }
 
     @Override
-    public void handle(HttpExchange exchange) throws IOException {
+    public void safeHandle(HttpExchange exchange) throws IOException {
         String requestMethod = exchange.getRequestMethod();
         String[] split = exchange.getRequestURI().getPath().split("/");
 

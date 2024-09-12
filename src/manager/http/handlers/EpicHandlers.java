@@ -14,10 +14,9 @@ public class EpicHandlers extends BaseHttpHandler {
     }
 
     @Override
-    public void handle(HttpExchange exchange) throws IOException {
+    public void safeHandle(HttpExchange exchange) throws IOException {
         Endpoint endpoint = getEndpoint(exchange);
         String[] split = exchange.getRequestURI().getPath().split("/");
-        try {
             switch (endpoint) {
                 case GET ->
                     sendText(exchange, gson.toJson(taskManager.showAllEpics()));
@@ -43,12 +42,5 @@ public class EpicHandlers extends BaseHttpHandler {
                 case UNKNOWN ->
                     sendNotFound(exchange);
             }
-        } catch (NullPointerException e) {
-            sendNotFound(exchange);
-        } catch (ManagerSaveException e) {
-            sendHasInteractions(exchange);
-        } catch (Exception e) {
-            writeResponse(exchange, 500, "");
-        }
     }
 }
